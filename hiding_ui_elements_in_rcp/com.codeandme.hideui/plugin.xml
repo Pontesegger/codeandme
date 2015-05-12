@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.activities">
+      <activity
+            id="myactivity"
+            name="Test Activity">
+      </activity>
+      <activityPatternBinding
+            activityId="myactivity"
+            isEqualityPattern="true"
+            pattern="org.eclipse.ui.externaltools.ExternalToolMenuDelegateToolbar">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="myactivity"
+            pattern="org.eclipse.ui.editors/org.eclipse.ui.edit.text.gotoNextAnnotation">
+      </activityPatternBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <hiddenMenuItem
+               id="org.eclipse.ui.run">
+         </hiddenMenuItem>
+         <hiddenToolBarItem
+               id="org.eclipse.debug.internal.ui.actions.RunDropDownAction">
+         </hiddenToolBarItem>
+      </perspectiveExtension>
+   </extension>
+
+</plugin>
