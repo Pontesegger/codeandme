@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.codeandme.multiparteditor.SampleEditor"
+            default="false"
+            id="com.codeandme.editor.sampleEditor"
+            name="Sample Editor">
+         <contentTypeBinding
+               contentTypeId="com.codeandme.contenttype.sample">
+         </contentTypeBinding>
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.core.runtime.xml"
+            file-extensions="sample"
+            id="com.codeandme.contenttype.sample"
+            name="Sample File"
+            priority="normal">
+      </content-type>
+   </extension>
+
+</plugin>
