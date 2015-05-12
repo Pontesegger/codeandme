@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.equinox.p2.engine.actions">
+      <action
+            class="com.codeandme.touchpoint.action.MyAction"
+            name="MyAction"
+            touchpointType="org.eclipse.equinox.p2.osgi"
+            touchpointVersion="1.0.0"
+            version="1.0.0">
+      </action>
+   </extension>
+</plugin>
+

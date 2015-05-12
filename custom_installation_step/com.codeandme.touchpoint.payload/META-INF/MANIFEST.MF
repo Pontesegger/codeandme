@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Custom Installation Payload
+Bundle-SymbolicName: com.codeandme.touchpoint.payload
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: codeandme.blogspot.com
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

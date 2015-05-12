@@ -1,0 +1,5 @@
+metaRequirements.0.namespace=org.eclipse.equinox.p2.iu
+metaRequirements.0.name=com.codeandme.touchpoint.action
+metaRequirements.0.range=[1,2)
+
+instructions.configure = com.codeandme.touchpoint.action.MyAction(key1:value1, key2:value2);
