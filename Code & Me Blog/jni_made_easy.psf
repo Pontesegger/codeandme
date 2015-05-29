@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,https://github.com/Pontesegger/codeandme.git,master,jni_made_easy/com.codeandme.jni"/>
+<project reference="1.0,https://github.com/Pontesegger/codeandme.git,master,jni_made_easy/JNI_Library_linux"/>
+<project reference="1.0,https://github.com/Pontesegger/codeandme.git,master,jni_made_easy/JNI_Library_windows"/>
+</provider>
+</psf>
