@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="gadgetDrop"
+         point="org.eclipse.ui.dropActions">
+      <action
+            class="com.codeandme.draganddrop.TextDropActionDelegate"
+            id="com.codeandme.draganddrop.dropText">
+      </action>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="com.codeandme.views.category"
+            class="com.codeandme.draganddrop.views.DragSourceView"
+            id="com.codeandme.droptonavigator.dragSource"
+            name="Drag Source"
+            restorable="true">
+      </view>
+      <view
+            category="com.codeandme.views.category"
+            class="com.codeandme.draganddrop.views.DropTargetView"
+            id="com.codeandme.droptonavigator.dropTarget"
+            name="Drop Target"
+            restorable="true">
+      </view>
+      <category
+            id="com.codeandme.views.category"
+            name="Code and Me">
+      </category>
+   </extension>
+
+</plugin>
