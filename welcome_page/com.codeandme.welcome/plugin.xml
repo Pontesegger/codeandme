@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.intro">
+      <introProductBinding
+            introId="org.eclipse.ui.intro.universal"
+            productId="com.codeandme.welcome.product">
+      </introProductBinding>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="example">
+         <property
+               name="introBrandingImage"
+               value="product:images/logo.png">
+         </property>
+         <property
+               name="introTitle"
+               value="My Example RCP Application">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro.configExtension">
+      <configExtension
+            configId="org.eclipse.ui.intro.universalConfig"
+            content="intro/sample.xml">
+      </configExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.codeandme.welcome.commands.ActivateWelcome"
+            id="com.codeandme.welcome.activateWelcome"
+            name="Activate Welcome Sceen">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="com.codeandme.welcome.toolbar1">
+            <command
+                  commandId="com.codeandme.welcome.activateWelcome"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         id="example"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="Welcome Screen Application">
+         <property
+               name="appName"
+               value="Welcome Screen Application">
+         </property>
+      </product>
+   </extension>
+
+</plugin>

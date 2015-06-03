@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Welcome Page Example
+Bundle-SymbolicName: com.codeandme.welcome;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: codeandme.blogspot.com
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.ui.intro,
+ org.eclipse.ui.intro.universal
