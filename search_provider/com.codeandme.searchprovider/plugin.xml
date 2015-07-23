@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.search.searchPages">
+      <page
+            class="com.codeandme.searchprovider.ui.FileSearchPage"
+            id="com.codeandme.searchprovider.page"
+            label="Filesystem Search">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.search.searchResultViewPages">
+      <viewPage
+            class="com.codeandme.searchprovider.ui.SearchResultPage"
+            id="com.codeandme.searchprovider.resultPage"
+            label="Filesystem Search"
+            searchResultClass="com.codeandme.searchprovider.FileSearchResult">
+      </viewPage>
+   </extension>
+
+</plugin>
