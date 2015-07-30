@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.part.ViewPart;
 
 public class ExampleView extends ViewPart {
-	public static final String VIEW_ID = "com.example.tycho.views.example";
+	public static final String VIEW_ID = "com.codeandme.tycho.views.example";
 
 	private Label lblNewLabel;
 
