@@ -4,13 +4,13 @@
    <extension
          point="org.eclipse.ui.views">
       <category
-            id="com.example.tycho.plugin.category1"
+            id="com.codeandme.tycho.plugin.category"
             name="Custom">
       </category>
       <view
-            category="com.example.tycho.plugin.category1"
-            class="com.example.tycho.plugin.ExampleView"
-            id="com.example.tycho.views.example"
+            category="com.codeandme.tycho.plugin.category"
+            class="com.codeandme.tycho.plugin.ExampleView"
+            id="com.codeandme.tycho.views.example"
             name="Example View"
             restorable="true">
       </view>
@@ -18,8 +18,8 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="com.example.tycho.plugin.OpenViewCommand"
-            id="com.example.tycho.commands.openview"
+            defaultHandler="com.codeandme.tycho.plugin.OpenViewCommand"
+            id="com.codeandme.tycho.commands.openview"
             name="Open example view">
       </command>
    </extension>

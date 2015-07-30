@@ -8,7 +8,7 @@
  * Contributors:
  *     Christian Pontesegger - initial implementation
  *******************************************************************************/
-package com.example.tycho.plugin;
+package com.codeandme.tycho.plugin;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;

@@ -8,7 +8,7 @@
  * Contributors:
  *     Christian Pontesegger - initial implementation
  *******************************************************************************/
-package com.example.tycho.plugin;
+package com.codeandme.tycho.plugin;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
