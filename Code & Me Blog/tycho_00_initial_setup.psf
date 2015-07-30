@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
 <provider id="org.eclipse.egit.core.GitProvider">
-<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/00 Initial setup/com.codeandme.tycho.plugin"/>
-<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/00 Initial setup/com.codeandme.tycho.plugin.feature"/>
-<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/00 Initial setup/com.codeandme.tycho.product"/>
-<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/00 Initial setup/com.codeandme.tycho.product.feature"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/00_initial_setup/com.codeandme.tycho.plugin"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/00_initial_setup/com.codeandme.tycho.plugin.feature"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/00_initial_setup/com.codeandme.tycho.product"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/00_initial_setup/com.codeandme.tycho.product.feature"/>
 </provider>
 </psf>
