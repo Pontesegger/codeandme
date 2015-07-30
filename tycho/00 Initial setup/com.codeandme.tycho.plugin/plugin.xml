@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="com.example.tycho.plugin.category1"
+            name="Custom">
+      </category>
+      <view
+            category="com.example.tycho.plugin.category1"
+            class="com.example.tycho.plugin.ExampleView"
+            id="com.example.tycho.views.example"
+            name="Example View"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.example.tycho.plugin.OpenViewCommand"
+            id="com.example.tycho.commands.openview"
+            name="Open example view">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar ">
+         <toolbar
+               id="com.example.tycho.plugin.toolbar1">
+            <command
+                  commandId="com.example.tycho.commands.openview"
+                  label="Open Example View"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>
