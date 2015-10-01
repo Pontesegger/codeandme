@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="com.codeandme.tycho.plugin.feature.source" version="1.0.0.qualifier">
+      <category name="source_components"/>
+   </feature>
+   <category-def name="source_components" label="Developer Resources"/>
+</site>
