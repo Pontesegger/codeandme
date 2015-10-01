@@ -167,5 +167,6 @@
 		<module>../com.codeandme.tycho.plugin.test</module>
 		<module>../com.codeandme.tycho.releng.targetplatform</module>
 		<module>../com.codeandme.tycho.releng.p2.source</module>
+		<module>../com.codeandme.tycho.help</module>
 	</modules>
 </project>
