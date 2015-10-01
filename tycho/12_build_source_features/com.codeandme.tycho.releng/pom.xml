@@ -8,6 +8,7 @@
 
 	<properties>
 		<tycho.version>0.23.0</tycho.version>
+		<tycho.extras.version>${tycho.version}</tycho.extras.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -50,6 +51,7 @@
 				<version>${tycho.version}</version>
 			</plugin>
 
+			<!-- signing jars disabled as the provided keystore is not meant for productive use
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jarsigner-plugin</artifactId>
@@ -69,7 +71,9 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			-->
+			
+			<!-- signing executables disabled as it needs additional executables			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -96,6 +100,61 @@
 					</arguments>
 				</configuration>
 			</plugin>
+			-->
+
+			<!-- enable source feature generation -->
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-source-feature-plugin</artifactId>
+				<version>${tycho.extras.version}</version>
+
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<phase>package</phase>
+						<goals>
+							<goal>source-feature</goal>
+						</goals>
+					</execution>
+				</executions>
+
+				<configuration>
+					<excludes>
+						<!-- provide plug-ins not containing any source code -->
+						<plugin id="com.codeandme.tycho.product" />
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho.version}</version>
+
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>attached-p2-metadata</id>
+						<phase>package</phase>
+						<goals>
+							<goal>p2-metadata</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<modules>
@@ -107,5 +166,6 @@
 		<module>../com.codeandme.tycho.releng.product</module>
 		<module>../com.codeandme.tycho.plugin.test</module>
 		<module>../com.codeandme.tycho.releng.targetplatform</module>
+		<module>../com.codeandme.tycho.releng.p2.source</module>
 	</modules>
 </project>
