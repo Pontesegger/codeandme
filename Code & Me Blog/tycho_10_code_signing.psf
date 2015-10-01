@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/10_code_signing/com.codeandme.tycho.plugin"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/10_code_signing/com.codeandme.tycho.plugin.feature"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/10_code_signing/com.codeandme.tycho.plugin.test"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/10_code_signing/com.codeandme.tycho.product"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/10_code_signing/com.codeandme.tycho.product.feature"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/10_code_signing/com.codeandme.tycho.releng"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/10_code_signing/com.codeandme.tycho.releng.p2"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/10_code_signing/com.codeandme.tycho.releng.product"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,tycho/10_code_signing/com.codeandme.tycho.releng.targetplatform"/>
+</provider>
+</psf>
