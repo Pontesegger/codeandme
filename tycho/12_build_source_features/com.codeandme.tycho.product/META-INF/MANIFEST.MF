@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tycho Product
+Bundle-SymbolicName: com.codeandme.tycho.product;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: codeandme.blogspot.com
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
