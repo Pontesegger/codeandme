@@ -50,6 +50,7 @@
 				<version>${tycho.version}</version>
 			</plugin>
 
+			<!-- signing jars disabled as the provided keystore is not meant for productive use
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jarsigner-plugin</artifactId>
@@ -69,7 +70,9 @@
 					</execution>
 				</executions>
 			</plugin>
+ -->
 
+			<!-- signing executables disabled as it needs additional executables
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -96,6 +99,7 @@
 					</arguments>
 				</configuration>
 			</plugin>
+ 			-->
 		</plugins>
 	</build>
 	<modules>
