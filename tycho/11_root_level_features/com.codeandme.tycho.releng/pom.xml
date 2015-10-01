@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>tycho_example</groupId>
+	<artifactId>com.codeandme.tycho.releng</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<tycho.version>0.23.0</tycho.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- enable tycho build extension -->
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<target>
+						<artifact>
+							<groupId>tycho_example</groupId>
+							<artifactId>com.codeandme.tycho.releng.targetplatform</artifactId>
+							<version>1.0.0-SNAPSHOT</version>
+						</artifact>
+					</target>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-versions-plugin</artifactId>
+				<version>${tycho.version}</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jarsigner-plugin</artifactId>
+				<version>1.2</version>
+				<configuration>
+					<keystore>${basedir}/../com.codeandme.tycho.releng/blog.keystore</keystore>
+					<storepass>verystrong</storepass>
+					<alias>eve</alias>
+					<keypass>secret</keypass>
+				</configuration>
+				<executions>
+					<execution>
+						<id>sign</id>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<id>exec</id>
+						<phase>package</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<executable>C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\signtool.exe</executable>
+					<arguments>
+						<argument>sign</argument>
+						<argument>/v</argument>
+						<argument>/f</argument>
+						<argument>C:\UserData\Workspaces\Blog\SampleCA.pfx</argument>
+						<argument>/t</argument>
+						<argument>http://timestamp.verisign.com/scripts/timstamp.dll</argument>
+						<argument>${project.build.directory}\products\tycho.product\win32\win32\x86\eclipse.exe</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<modules>
+		<module>../com.codeandme.tycho.plugin</module>
+		<module>../com.codeandme.tycho.plugin.feature</module>
+		<module>../com.codeandme.tycho.releng.p2</module>
+		<module>../com.codeandme.tycho.product</module>
+		<module>../com.codeandme.tycho.product.feature</module>
+		<module>../com.codeandme.tycho.releng.product</module>
+		<module>../com.codeandme.tycho.plugin.test</module>
+		<module>../com.codeandme.tycho.releng.targetplatform</module>
+	</modules>
+</project>
