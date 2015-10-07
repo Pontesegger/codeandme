@@ -1,0 +1,10 @@
+# Debugging options for the com.codeandme.tracing bundle
+
+# global debug switch for this bundle
+com.codeandme.tracing/debug=false
+
+# activate debug messages from activator
+com.codeandme.tracing/debug/activator=false
+
+# activate debug messages from MyClass
+com.codeandme.tracing/debug/myclass=false
