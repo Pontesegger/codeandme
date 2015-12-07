@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,ease_interpreter/01_beanshell/org.beanshell"/>
+<project reference="1.0,ssh://git@github.com/Pontesegger/codeandme.git,master,ease_interpreter/04_modules_support/org.eclipse.ease.lang.beanshell"/>
+</provider>
+</psf>
