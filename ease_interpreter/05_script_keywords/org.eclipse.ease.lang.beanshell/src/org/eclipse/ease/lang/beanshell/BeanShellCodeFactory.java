@@ -23,14 +23,14 @@ public class BeanShellCodeFactory extends AbstractCodeFactory {
 	}
 
 	@Override
-	public String getSaveVariableName(String variableName) {
+	public String getSaveVariableName(final String variableName) {
 		return BeanShellHelper.getSaveName(variableName);
 	}
 
 	@Override
 	public String createFunctionWrapper(final IEnvironment environment, final String moduleVariable, final Method method) {
 
-		final StringBuilder javaScriptCode = new StringBuilder();
+		final StringBuilder scriptCode = new StringBuilder();
 
 		// parse parameters
 		final List<Parameter> parameters = ModuleHelper.getParameters(method);
@@ -75,13 +75,13 @@ public class BeanShellCodeFactory extends AbstractCodeFactory {
 						"The method name \"" + name + "\" from the module \"" + moduleVariable + "\" can not be wrapped because it's name is reserved");
 
 			} else if (!name.isEmpty()) {
-				javaScriptCode.append(name).append("(").append(parameterList).append(") {\n");
-				javaScriptCode.append(body);
-				javaScriptCode.append("}\n");
+				scriptCode.append(name).append("(").append(parameterList).append(") {\n");
+				scriptCode.append(body);
+				scriptCode.append("}\n");
 			}
 		}
 
-		return javaScriptCode.toString();
+		return scriptCode.toString();
 	}
 
 	@Override

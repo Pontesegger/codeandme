@@ -22,6 +22,7 @@
          point="org.eclipse.ease.scriptType">
       <scriptType
             codeFactory="org.eclipse.ease.lang.beanshell.BeanShellCodeFactory"
+            codeParser="org.eclipse.ease.lang.beanshell.BeanShellCodeParser"
             defaultExtension="bsh"
             name="BeanShell">
          <binding

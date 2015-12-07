@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.ease.AbstractScriptEngine;
+import org.eclipse.ease.DelegatingJarClassLoader;
 import org.eclipse.ease.Logger;
 import org.eclipse.ease.Script;
 
@@ -25,6 +26,7 @@ import bsh.Variable;
 public class BeanShellEngine extends AbstractScriptEngine {
 
 	private Interpreter fInterpreter = null;
+	private DelegatingJarClassLoader fClassLoader;
 
 	public BeanShellEngine() {
 		super("BeanShell");
@@ -34,7 +36,8 @@ public class BeanShellEngine extends AbstractScriptEngine {
 	protected boolean setupEngine() {
 		fInterpreter = new Interpreter();
 
-		fInterpreter.setClassLoader(getClass().getClassLoader());
+		fClassLoader = new DelegatingJarClassLoader(getClass().getClassLoader());
+		fInterpreter.setClassLoader(fClassLoader);
 
 		fInterpreter.setOut(getOutputStream());
 		fInterpreter.setErr(getErrorStream());
@@ -115,7 +118,7 @@ public class BeanShellEngine extends AbstractScriptEngine {
 
 	@Override
 	public void registerJar(final URL url) {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("registerJar not implemented");
+		if (fClassLoader != null)
+			fClassLoader.registerURL(url);
 	}
 }
