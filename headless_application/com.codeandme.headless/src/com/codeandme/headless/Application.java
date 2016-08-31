@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2016 Christian Pontesegger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Christian Pontesegger - initial API and implementation
+ *******************************************************************************/
 package com.codeandme.headless;
 
 import java.util.Map;
@@ -10,15 +20,10 @@ import org.eclipse.equinox.app.IApplicationContext;
  */
 public class Application implements IApplication {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
-	 */
 	@Override
 	public Object start(final IApplicationContext context) throws Exception {
 		System.out.println("Hello RCP World!");
-		final Map args = context.getArguments();
+		final Map<?,?> args = context.getArguments();
 		final String[] appArgs = (String[]) args.get("application.args");
 		for (final String arg : appArgs) {
 			System.out.println(arg);
@@ -27,11 +32,6 @@ public class Application implements IApplication {
 		return IApplication.EXIT_OK;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.equinox.app.IApplication#stop()
-	 */
 	@Override
 	public void stop() {
 		// nothing to do
