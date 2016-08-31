@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Headless App
+Bundle-SymbolicName: com.codeandme.headless;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: codeandme.blogspot.com
+Require-Bundle: org.eclipse.equinox.app
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
