@@ -53,6 +53,64 @@
             </visibleWhen>
          </command>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.navigator.ProjectExplorer">
+            <command
+                  commandId="org.eclipse.ui.file.exit"
+                  label="Test1"
+                  style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="activePartId">
+                     <equals
+                           value="org.eclipse.ui.navigator.ProjectExplorer">
+                     </equals>
+                  </with>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.eclipse.ui.file.exit"
+                  label="Test2"
+                  style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <iterate
+                           operator="or">
+                        <adapt
+                              type="org.eclipse.core.resources.IProject">
+                        </adapt>
+                     </iterate>
+                  </with>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.eclipse.ui.file.exit"
+                  label="Test3"
+                  style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <and>
+                        <iterate
+                              operator="and">
+                           <test
+                                 property="org.eclipse.core.resources.extension "
+                                 value="txt">
+                           </test>
+                        </iterate>
+                        <count
+                              value="2">
+                        </count>
+                     </and>
+                  </with>
+               </visibleWhen>
+            </command>
+      </menuContribution>
    </extension>
 
 </plugin>
