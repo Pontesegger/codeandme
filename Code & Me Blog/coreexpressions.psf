@@ -2,6 +2,5 @@
 <psf version="2.0">
 <provider id="org.eclipse.egit.core.GitProvider">
 <project reference="1.0,https://github.com/Pontesegger/codeandme.git,master,coreexpressions/com.codeandme.coreexpressions"/>
-<project reference="1.0,https://github.com/Pontesegger/codeandme.git,master,coreexpressions/com.codeandme.coreexpressions.samples"/>
 </provider>
 </psf>
