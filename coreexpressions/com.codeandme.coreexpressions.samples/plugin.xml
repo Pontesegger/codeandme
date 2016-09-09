@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.codeandme.coreexpressions.samples.Login"
+            id="com.codeandme.coreexpressions.commands.login"
+            name="login">
+      </command>
+      <command
+            defaultHandler="com.codeandme.coreexpressions.samples.Logout"
+            id="com.codeandme.coreexpressions.commands.logout"
+            name="logout">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:file?after=additions">
+         <command
+               commandId="com.codeandme.coreexpressions.commands.login"
+               label="Login"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="com.codeandme.coreexpressions.currentStatus">
+                  <or>
+                     <equals
+                           value="startup">
+                     </equals>
+                     <equals
+                           value="logged off">
+                     </equals>
+                  </or>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="com.codeandme.coreexpressions.commands.logout"
+               label="Logoff"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="com.codeandme.coreexpressions.currentUser">
+                  <equals
+                        value="John Doe">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>

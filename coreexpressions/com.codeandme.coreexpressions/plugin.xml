@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.services">
+      <sourceProvider
+            provider="com.codeandme.coreexpressions.ExampleSourceProvider">
+         <variable
+               name="com.codeandme.coreexpressions.currentStatus"
+               priorityLevel="workbench">
+         </variable>
+         <variable
+               name="com.codeandme.coreexpressions.currentUser"
+               priorityLevel="workbench">
+         </variable>
+      </sourceProvider>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="com.codeandme.coreexpressions.ExamplePropertyTester"
+            id="com.codeandme.coreexpressions.examplePropertyTester"
+            namespace="com.codeandme.coreexpressions"
+            properties="name,validated"
+            type="java.lang.Object">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="com.codeandme.coreexpressions.sampleDefinition">
+         <with
+               variable="com.codeandme.coreexpressions.currentUser">
+            <test
+                  forcePluginActivation="true"
+                  property="com.codeandme.coreexpressions.name"
+                  value="John Doe">
+            </test>
+         </with>
+      </definition>
+   </extension>
+
+</plugin>
