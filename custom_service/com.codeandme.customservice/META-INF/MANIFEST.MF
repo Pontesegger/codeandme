@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Custom Service Provider
+Bundle-SymbolicName: com.codeandme.customservice;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: codeandme.blogspot.com
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.codeandme.customservice

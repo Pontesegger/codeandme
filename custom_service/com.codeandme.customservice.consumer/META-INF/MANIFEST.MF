@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Custom Service Consumer
+Bundle-SymbolicName: com.codeandme.customservice.consumer;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: codeandme.blogspot.com
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ com.codeandme.customservice;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
