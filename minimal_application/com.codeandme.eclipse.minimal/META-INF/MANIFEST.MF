@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Minimal Eclipse Setup
+Bundle-SymbolicName: com.codeandme.eclipse.minimal;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: codeandme.blogspot.com
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
