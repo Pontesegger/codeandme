@@ -34,7 +34,7 @@
     <requirement
         name="org.eclipse.ease.ui.feature.feature.group"/>
     <requirement
-        name="org.eclipse.ease.javascript.feature.feature.group"/>
+        name="org.eclipse.ease.lang.javascript.feature.feature.group"/>
     <repository
         url="http://download.eclipse.org/ease/update/nightly"/>
   </setupTask>
