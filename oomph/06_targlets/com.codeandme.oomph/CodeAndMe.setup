@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:Project
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore"
+    name="code.and.me"
+    label="Code and me">
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      name="Eclipse.ini settings">
+    <setupTask
+        xsi:type="setup:EclipseIniTask"
+        id="setup.xms"
+        option="-Xms"
+        value="1024m"
+        vm="true">
+      <description>Set the initial heap space to 1GB</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:EclipseIniTask"
+        id="setup.xmx"
+        option="-Xmx"
+        value="1024m"
+        vm="true">
+      <description>Set the maximum heap space to 1GB</description>
+    </setupTask>
+  </setupTask>
+  <setupTask
+      xsi:type="setup.p2:P2Task">
+    <requirement
+        name="org.eclipse.ease.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.ease.ui.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.ease.lang.javascript.feature.feature.group"/>
+    <repository
+        url="http://download.eclipse.org/ease/update/nightly"/>
+  </setupTask>
+  <setupTask
+      xsi:type="git:GitCloneTask"
+      id="codeandme.git.clone"
+      remoteURI="https://github.com/Pontesegger/codeandme.git">
+    <description>Clone codeandme.github.com</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup.targlets:TargletTask">
+    <targlet
+        name="CodeAndMe">
+      <requirement
+          name="*"/>
+      <sourceLocator
+          rootFolder="${codeandme.git.clone.location/ease_interpreter}"/>
+      <repositoryList>
+        <repository
+            url="http://download.eclipse.org/releases/neon"/>
+        <repository
+            url="http://download.eclipse.org/ease/update/nightly"/>
+      </repositoryList>
+    </targlet>
+  </setupTask>
+  <stream name="master"
+      label="Master"/>
+  <logicalProjectContainer
+      xsi:type="setup:ProjectCatalog"
+      href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
+  <description>Code and me provides cool stuff.</description>
+</setup:Project>
