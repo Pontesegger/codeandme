@@ -6,4 +6,5 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: codeandme.blogspot.com
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.commands,
- org.eclipse.ui.workbench
+ org.eclipse.ui.workbench,
+ org.eclipse.jface
