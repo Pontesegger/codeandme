@@ -23,9 +23,6 @@ public class HTMLTableExporter extends TableExporter {
 
 	public HTMLTableExporter(TableViewer viewer) {
 		super(viewer);
-		
-		TableExporter exporter = new TableExporter(tableViewer);
-		exporter.print(outputStream);
 	}
 
 	@Override
