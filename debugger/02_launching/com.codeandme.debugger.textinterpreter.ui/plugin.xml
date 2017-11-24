@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="com.codeandme.debugger.textinterpreter.ui.TextLaunchDelegate"
+            id="com.codeandme.launchConfigurationType.textInterpreter"
+            modes="run"
+            name="Text Interpreter">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="com.codeandme.launchConfigurationType.textInterpreter"
+            icon="images/launcher.png"
+            id="com.codeandme.launchConfigurationTypeImage.textInterpreter">
+      </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="com.codeandme.debugger.textinterpreter.ui.tabs.LaunchConfigurationTabGroup"
+            id="com.codeandme.launchConfigurationTabGroup.textInterpreter"
+            type="com.codeandme.launchConfigurationType.textInterpreter">
+         <launchMode
+               mode="run">
+         </launchMode>
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="com.codeandme.debugger.textinterpreter.ui.TextLaunchDelegate"
+            description="Run text interpreter on file"
+            icon="images/launcher.png"
+            id="com.codeandme.launchShortcut.textInterpreter"
+            label="Text Interpreter"
+            modes="run">
+         <contextualLaunch>
+            <enablement>
+               <count
+                     value="1">
+               </count>
+               <iterate>
+                  <test
+                        property="org.eclipse.debug.ui.matchesPattern"
+                        value="txt">
+                  </test>
+               </iterate>
+            </enablement>
+         </contextualLaunch>
+         <configurationType
+               id="com.codeandme.launchConfigurationType.textInterpreter">
+         </configurationType>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="*">
+         <actionSet
+               id="org.eclipse.debug.ui.launchActionSet">
+         </actionSet>
+      </perspectiveExtension>
+   </extension>
+
+</plugin>
