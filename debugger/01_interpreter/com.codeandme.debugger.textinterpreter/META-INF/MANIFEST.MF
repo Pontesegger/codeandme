@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Text Interpreter
+Bundle-SymbolicName: com.codeandme.debugger.textinterpreter
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Code & me
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.core.runtime
+Export-Package: com.codeandme.debugger.textinterpreter
