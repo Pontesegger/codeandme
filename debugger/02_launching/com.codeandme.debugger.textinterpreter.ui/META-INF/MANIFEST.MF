@@ -5,11 +5,11 @@ Bundle-SymbolicName: com.codeandme.debugger.textinterpreter.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Code & me
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: com.codeandme.textinterpreter;bundle-version="1.0.0",
- org.eclipse.debug.ui,
+Require-Bundle: org.eclipse.debug.ui,
  org.eclipse.core.runtime,
  org.eclipse.swt,
  org.eclipse.ui.workbench,
  org.eclipse.jface,
  org.eclipse.ui.ide,
- org.eclipse.ui
+ org.eclipse.ui,
+ com.codeandme.debugger.textinterpreter;bundle-version="1.0.0"

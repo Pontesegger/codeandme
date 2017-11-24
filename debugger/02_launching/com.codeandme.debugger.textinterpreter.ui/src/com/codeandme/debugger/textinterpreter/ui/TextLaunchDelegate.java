@@ -38,7 +38,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
-import com.codeandme.textinterpreter.TextInterpreter;
+import com.codeandme.debugger.textinterpreter.TextInterpreter;
 
 public class TextLaunchDelegate implements ILaunchShortcut, ILaunchShortcut2, ILaunchConfigurationDelegate {
 
