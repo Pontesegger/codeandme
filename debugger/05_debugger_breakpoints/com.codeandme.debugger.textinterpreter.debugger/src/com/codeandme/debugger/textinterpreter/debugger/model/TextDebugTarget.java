@@ -118,7 +118,7 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				setState(State.TERMINATED);
 
 				 // unregister breakpoint listener
-			    DebugPlugin.getDefault().getBreakpointManager().removeBreakpointListener(this);
+				DebugPlugin.getDefault().getBreakpointManager().removeBreakpointListener(this);
 
 				// we do not need our dispatcher anymore
 				fDispatcher.terminate();
