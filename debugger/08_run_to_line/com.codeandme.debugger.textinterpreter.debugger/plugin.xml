@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.ui.debugModelPresentations">
+      <debugModelPresentation
+            class="com.codeandme.debugger.textinterpreter.debugger.model.TextDebugModelPresentation"
+            id="com.codeandme.debugModelPresentation.textinterpreter">
+      </debugModelPresentation>
+   </extension>
+   <extension
+         id="textLineBreakpointMarker"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.debug.core.lineBreakpointMarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.breakpoints">
+      <breakpoint
+            class="com.codeandme.debugger.textinterpreter.debugger.breakpoints.TextLineBreakpoint"
+            id="com.codeandme.debugger.textinterpreter.debugger.breakpoint1"
+            markerType="com.codeandme.debugger.textinterpreter.debugger.textLineBreakpointMarker"
+            name="Text Line Breakpoints">
+      </breakpoint>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.ui.texteditor.ITextEditor"
+            class="com.codeandme.debugger.textinterpreter.debugger.breakpoints.TextBreakpointAdapterFactory">
+         <adapter
+               type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+         </adapter>
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="textEditor.rulerActions"
+            targetID="#TextRulerContext">
+         <action
+               class="com.codeandme.debugger.textinterpreter.debugger.breakpoints.RulerToggleBreakpointAction"
+               id="pda.editor.ruler.toggleBreakpointAction"
+               label="Toggle Breakpoint"
+               menubarPath="debug">
+         </action>
+      </viewerContribution>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.sourceLocators">
+      <sourceLocator
+            class="com.codeandme.debugger.textinterpreter.debugger.model.TextSourceLocator"
+            id="com.codeandme.debugger.textinterpreter.debugger.sourceLocator"
+            name="Text source locator">
+      </sourceLocator>
+   </extension>
+
+</plugin>
