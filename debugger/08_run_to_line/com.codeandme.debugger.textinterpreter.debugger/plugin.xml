@@ -36,6 +36,13 @@
                type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
          </adapter>
       </factory>
+      <factory
+            adaptableType="org.eclipse.ui.texteditor.ITextEditor"
+            class="com.codeandme.debugger.textinterpreter.debugger.breakpoints.RunToLineAdapter">
+         <adapter
+               type="org.eclipse.debug.ui.actions.IRunToLineTarget">
+         </adapter>
+      </factory>
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
@@ -47,6 +54,18 @@
                id="pda.editor.ruler.toggleBreakpointAction"
                label="Toggle Breakpoint"
                menubarPath="debug">
+         </action>
+      </viewerContribution>
+      <viewerContribution
+            id="textEditor.editorActions"
+            targetID="#TextEditorContext">
+         <action
+               class="org.eclipse.debug.ui.actions.RunToLineActionDelegate"
+               definitionId="org.eclipse.debug.ui.commands.RunToLine"
+               icon="images/run_to_line.gif"
+               id="com.codeandme.debugger.textinterpreter.debugger.RunToLine"
+               label="Run to line"
+               menubarPath="additions">
          </action>
       </viewerContribution>
    </extension>
