@@ -1,0 +1,4 @@
+# Debugging options for the com.codeandme.tracing bundle
+
+# global debug switch for this bundle
+com.codeandme.debugger.textinterpreter.debugger/debug=false
