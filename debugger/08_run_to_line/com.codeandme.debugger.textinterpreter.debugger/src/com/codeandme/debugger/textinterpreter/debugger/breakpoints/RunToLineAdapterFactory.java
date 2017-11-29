@@ -3,7 +3,7 @@ package com.codeandme.debugger.textinterpreter.debugger.breakpoints;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.debug.ui.actions.IRunToLineTarget;
 
-public class RunToLineAdapter implements IAdapterFactory {
+public class RunToLineAdapterFactory implements IAdapterFactory {
 
 	@Override
 	public <T> T getAdapter(Object adaptableObject, Class<T> adapterType) {

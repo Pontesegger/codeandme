@@ -17,6 +17,14 @@ import com.codeandme.debugger.textinterpreter.debugger.model.TextStackFrame;
 
 public class RunToLineTarget implements IRunToLineTarget {
 
+	private static int getLineNumber(ISelection selection) {
+		if (selection instanceof ITextSelection)
+			// text selections are 0 based
+			return ((ITextSelection) selection).getStartLine() + 1;
+		
+		return 0;
+	}
+
 	@Override
 	public void runToLine(IWorkbenchPart part, ISelection selection, ISuspendResume target) throws CoreException {
 		if (target instanceof IAdaptable) {
@@ -32,13 +40,5 @@ public class RunToLineTarget implements IRunToLineTarget {
 	@Override
 	public boolean canRunToLine(IWorkbenchPart part, ISelection selection, ISuspendResume target) {
 		return (target instanceof TextStackFrame);
-	}
-
-	private static int getLineNumber(ISelection selection) {
-		if (selection instanceof ITextSelection)
-			// text selections are 0 based
-			return ((ITextSelection) selection).getStartLine() + 1;
-
-		return 0;
 	}
 }

@@ -38,7 +38,7 @@
       </factory>
       <factory
             adaptableType="org.eclipse.ui.texteditor.ITextEditor"
-            class="com.codeandme.debugger.textinterpreter.debugger.breakpoints.RunToLineAdapter">
+            class="com.codeandme.debugger.textinterpreter.debugger.breakpoints.RunToLineAdapterFactory">
          <adapter
                type="org.eclipse.debug.ui.actions.IRunToLineTarget">
          </adapter>
