@@ -82,6 +82,11 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				fThreads.add(thread);
 				thread.fireCreationEvent();
 
+				// create stack frame
+				TextStackFrame stackFrame = new TextStackFrame(this, thread);
+				thread.addStackFrame(stackFrame);
+				stackFrame.fireCreationEvent();
+
 				// debugger got started and waits in suspended mode
 				setState(State.SUSPENDED);
 
@@ -100,6 +105,9 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				// debugger got started and waits in suspended mode
 				setState(State.SUSPENDED);
 
+				getThreads()[0].getTopStackFrame().setLineNumber(((SuspendedEvent) event).getLineNumber());
+				getThreads()[0].getTopStackFrame().fireChangeEvent(DebugEvent.CONTENT);
+
 				// inform eclipse of suspended state
 				fireSuspendEvent(DebugEvent.CLIENT_REQUEST);
 
@@ -117,7 +125,7 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				// debugger is terminated
 				setState(State.TERMINATED);
 
-				 // unregister breakpoint listener
+				// unregister breakpoint listener
 				DebugPlugin.getDefault().getBreakpointManager().removeBreakpointListener(this);
 
 				// we do not need our dispatcher anymore
@@ -179,6 +187,10 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 		return this;
 	}
 
+	public IFile getFile() {
+		return fFile;
+	}
+	
 	// ************************************************************
 	// IBreakpointListener
 	// ************************************************************

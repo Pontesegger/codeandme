@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Text Interpreter UI
+Bundle-SymbolicName: com.codeandme.debugger.textinterpreter.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Code & me
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.debug.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.swt,
+ org.eclipse.ui.workbench,
+ org.eclipse.jface,
+ org.eclipse.ui.ide,
+ org.eclipse.ui,
+ com.codeandme.debugger.textinterpreter,
+ com.codeandme.debugger.textinterpreter.debugger

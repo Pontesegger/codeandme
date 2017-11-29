@@ -50,5 +50,13 @@
          </action>
       </viewerContribution>
    </extension>
+   <extension
+         point="org.eclipse.debug.core.sourceLocators">
+      <sourceLocator
+            class="com.codeandme.debugger.textinterpreter.debugger.model.TextSourceLocator"
+            id="com.codeandme.debugger.textinterpreter.debugger.sourceLocator"
+            name="Text source locator">
+      </sourceLocator>
+   </extension>
 
 </plugin>

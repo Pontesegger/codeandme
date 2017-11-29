@@ -1,11 +1,14 @@
 package com.codeandme.debugger.textinterpreter.debugger.model;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.debug.core.model.IValue;
 import org.eclipse.debug.ui.IDebugModelPresentation;
 import org.eclipse.debug.ui.IValueDetailListener;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.FileEditorInput;
 
 public class TextDebugModelPresentation implements IDebugModelPresentation {
 
@@ -30,11 +33,17 @@ public class TextDebugModelPresentation implements IDebugModelPresentation {
 
 	@Override
 	public IEditorInput getEditorInput(Object element) {
+		if (element instanceof IFile)
+			return new FileEditorInput((IFile) element);
+
 		return null;
 	}
 
 	@Override
 	public String getEditorId(IEditorInput input, Object element) {
+		if (element instanceof IFile)
+			return PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(((IFile) element).getName()).getId();
+
 		return null;
 	}
 
