@@ -202,10 +202,10 @@ public class TextInterpreter extends Job {
 	/**
 	 * Terminate interpreter.
 	 */
-	public void terminate() {
+	public synchronized void terminate() {
 		fTerminated = true;
 
 		// in case we are suspended
-		resume();
+		notifyAll();
 	}
 }
