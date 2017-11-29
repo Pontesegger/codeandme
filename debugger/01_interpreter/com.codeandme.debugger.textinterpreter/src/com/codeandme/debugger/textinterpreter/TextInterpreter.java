@@ -46,6 +46,7 @@ public class TextInterpreter extends Job {
 				"counter = 23\r\n" + 
 				"\r\n" + 
 				"we are running\r\n" + 
+				"nice to see you, ${first name} (age ${counter})\r\n" + 
 				"our interpreter");
 		// @formatter:on
 		interpreter.run(new NullProgressMonitor());
@@ -125,7 +126,7 @@ public class TextInterpreter extends Job {
 		// do variable replacement
 		Matcher matcher = VARIABLE_MATCHER.matcher(lineOfCode);
 		while (matcher.matches()) {
-			lineOfCode = matcher.replaceFirst(fVariables.get(matcher.group(1)));
+			lineOfCode = lineOfCode.replaceAll(Pattern.quote("${" + matcher.group(1) + "}"), fVariables.get(matcher.group(1)));
 			matcher = VARIABLE_MATCHER.matcher(lineOfCode);
 		}
 
@@ -135,7 +136,6 @@ public class TextInterpreter extends Job {
 			// variable found
 			fVariables.put(tokens[0].trim(), tokens[1].trim());
 		}
-
 
 		return lineOfCode;
 	}
