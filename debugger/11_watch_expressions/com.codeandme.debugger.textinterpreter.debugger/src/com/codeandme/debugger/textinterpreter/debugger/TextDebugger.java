@@ -11,6 +11,7 @@ import com.codeandme.debugger.textinterpreter.debugger.dispatcher.EventDispatchJ
 import com.codeandme.debugger.textinterpreter.debugger.dispatcher.IEventProcessor;
 import com.codeandme.debugger.textinterpreter.debugger.events.IDebugEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.DebuggerStartedEvent;
+import com.codeandme.debugger.textinterpreter.debugger.events.debugger.EvaluateExpressionResult;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.ResumedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.SuspendedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.TerminatedEvent;
@@ -18,6 +19,7 @@ import com.codeandme.debugger.textinterpreter.debugger.events.debugger.Variables
 import com.codeandme.debugger.textinterpreter.debugger.events.model.BreakpointRequest;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.ChangeVariableRequest;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.DisconnectRequest;
+import com.codeandme.debugger.textinterpreter.debugger.events.model.EvaluateExpressionRequest;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.FetchVariablesRequest;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.ResumeRequest;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.TerminateRequest;
@@ -99,6 +101,10 @@ public class TextDebugger implements IDebugger, IEventProcessor {
 		} else if (event instanceof ChangeVariableRequest) {
 			fInterpreter.getVariables().put(((ChangeVariableRequest) event).getName(), ((ChangeVariableRequest) event).getContent());
 			fireEvent(new VariablesEvent(fInterpreter.getVariables()));
+
+		} else if (event instanceof EvaluateExpressionRequest) {
+			String result = fInterpreter.evaluate(((EvaluateExpressionRequest) event).getExpression());
+			fireEvent(new EvaluateExpressionResult(result, (EvaluateExpressionRequest) event));
 		}
 	}
 

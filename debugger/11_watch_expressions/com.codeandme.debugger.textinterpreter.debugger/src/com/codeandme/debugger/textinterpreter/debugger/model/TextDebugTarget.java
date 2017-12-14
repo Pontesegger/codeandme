@@ -16,12 +16,14 @@ import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IMemoryBlock;
 import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.debug.core.model.IWatchExpressionListener;
 
 import com.codeandme.debugger.textinterpreter.debugger.Activator;
 import com.codeandme.debugger.textinterpreter.debugger.dispatcher.EventDispatchJob;
 import com.codeandme.debugger.textinterpreter.debugger.dispatcher.IEventProcessor;
 import com.codeandme.debugger.textinterpreter.debugger.events.IDebugEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.DebuggerStartedEvent;
+import com.codeandme.debugger.textinterpreter.debugger.events.debugger.EvaluateExpressionResult;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.ResumedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.SuspendedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.TerminatedEvent;
@@ -128,6 +130,11 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				if (getThreads().length > 0)
 					getThreads()[0].getTopStackFrame().setVariables(((VariablesEvent) event).getVariables());
 
+			} else if (event instanceof EvaluateExpressionResult) {
+				IWatchExpressionListener listener = ((EvaluateExpressionResult) event).getOriginalRequest().getListener();
+				TextWatchExpressionResult result = new TextWatchExpressionResult((EvaluateExpressionResult)event, this);
+				listener.watchEvaluationFinished(result);
+				
 			} else if (event instanceof TerminatedEvent) {
 				// debugger is terminated
 				setState(State.TERMINATED);
