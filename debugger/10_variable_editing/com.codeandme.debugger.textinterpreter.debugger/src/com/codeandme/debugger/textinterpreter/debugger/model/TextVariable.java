@@ -5,6 +5,8 @@ import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IValue;
 import org.eclipse.debug.core.model.IVariable;
 
+import com.codeandme.debugger.textinterpreter.debugger.events.model.ChangeVariableRequest;
+
 public class TextVariable extends TextDebugElement implements IVariable {
 
 	private final String fName;
@@ -14,12 +16,12 @@ public class TextVariable extends TextDebugElement implements IVariable {
 	protected TextVariable(IDebugTarget target, String name, String value) {
 		super(target);
 		fName = name;
-		setValue(value);
+		setValue(new TextValue(getDebugTarget(), value));
 	}
 
 	@Override
 	public void setValue(String expression) {
-		fValue = new TextValue(getDebugTarget(), expression);
+		getDebugTarget().fireModelEvent(new ChangeVariableRequest(getName(), expression));
 	}
 
 	@Override
@@ -29,17 +31,17 @@ public class TextVariable extends TextDebugElement implements IVariable {
 
 	@Override
 	public boolean supportsValueModification() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean verifyValue(String expression) throws DebugException {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean verifyValue(IValue value) throws DebugException {
-		return false;
+		return true;
 	}
 
 	@Override

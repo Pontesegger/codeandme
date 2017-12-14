@@ -58,7 +58,7 @@ public class TextStackFrame extends TextDebugElement implements IStackFrame {
 					}
 
 					variable.setChanged(!newValue.equals(oldValue));
-					variable.setValue(variables.get(name));
+					variable.setValue(new TextValue(getDebugTarget(), newValue));
 					variable.fireChangeEvent(DebugEvent.CONTENT);
 
 					processed = true;
