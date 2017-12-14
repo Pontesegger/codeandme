@@ -6,8 +6,6 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
@@ -24,6 +22,7 @@ import com.codeandme.debugger.textinterpreter.debugger.dispatcher.IEventProcesso
 import com.codeandme.debugger.textinterpreter.debugger.events.IDebugEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.DebuggerStartedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.EvaluateExpressionResult;
+import com.codeandme.debugger.textinterpreter.debugger.events.debugger.MemoryEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.ResumedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.SuspendedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.TerminatedEvent;
@@ -41,6 +40,8 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 	private final ILaunch fLaunch;
 
 	private final IFile fFile;
+
+	private List<TextMemoryBlock> fMemoryBlocks = new ArrayList<>();
 
 	public TextDebugTarget(final ILaunch launch, IFile file) {
 		super(null);
@@ -90,7 +91,6 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				TextStackFrame stackFrame = new TextStackFrame(this, thread);
 				thread.addStackFrame(stackFrame);
 				stackFrame.fireCreationEvent();
-				
 
 				// debugger got started and waits in suspended mode
 				setState(State.SUSPENDED);
@@ -113,6 +113,10 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				getThreads()[0].getTopStackFrame().setLineNumber(((SuspendedEvent) event).getLineNumber());
 				getThreads()[0].getTopStackFrame().fireChangeEvent(DebugEvent.CONTENT);
 
+				// mark memory regions as dirty
+				for (TextMemoryBlock memory: fMemoryBlocks)
+					memory.setDirty();
+				
 				// inform eclipse of suspended state
 				getThreads()[0].fireSuspendEvent(DebugEvent.BREAKPOINT);
 				
@@ -132,9 +136,9 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 
 			} else if (event instanceof EvaluateExpressionResult) {
 				IWatchExpressionListener listener = ((EvaluateExpressionResult) event).getOriginalRequest().getListener();
-				TextWatchExpressionResult result = new TextWatchExpressionResult((EvaluateExpressionResult)event, this);
+				TextWatchExpressionResult result = new TextWatchExpressionResult((EvaluateExpressionResult) event, this);
 				listener.watchEvaluationFinished(result);
-				
+
 			} else if (event instanceof TerminatedEvent) {
 				// debugger is terminated
 				setState(State.TERMINATED);
@@ -147,6 +151,16 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 
 				// inform eclipse of terminated state
 				fireTerminateEvent();
+
+			} else if (event instanceof MemoryEvent) {
+				int startAddress = ((MemoryEvent) event).getStartAddress();
+				for (TextMemoryBlock block : fMemoryBlocks) {
+					if ((startAddress >= block.getStartAddress()) && (startAddress < block.getEndAddress())) {
+						// block affected
+						block.update(startAddress, ((MemoryEvent) event).getData());
+						block.fireChangeEvent(DebugEvent.CONTENT);
+					}
+				}
 			}
 		}
 	}
@@ -233,11 +247,15 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 
 	@Override
 	public boolean supportsStorageRetrieval() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public IMemoryBlock getMemoryBlock(final long startAddress, final long length) throws DebugException {
-		throw new DebugException(new Status(IStatus.ERROR, "com.codeandme.textinterpreter.debugger", "getMemoryBlock() not supported"));
+		TextMemoryBlock memoryBlock = new TextMemoryBlock(this, startAddress, length);
+		fMemoryBlocks.add(memoryBlock);
+		memoryBlock.fireCreationEvent();
+
+		return memoryBlock;
 	}
 }

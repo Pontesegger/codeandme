@@ -84,5 +84,17 @@
             delegateClass="com.codeandme.debugger.textinterpreter.debugger.model.TextWatchExpressionDelegate">
       </watchExpressionDelegate>
    </extension>
+   <extension
+         point="org.eclipse.debug.ui.memoryRenderings">
+      <renderingBindings
+            primaryId="org.eclipse.debug.ui.rendering.ascii"
+            renderingIds="org.eclipse.debug.ui.rendering.ascii,org.eclipse.debug.ui.rendering.raw_memory">
+         <enablement>
+            <instanceof
+                  value="com.codeandme.debugger.textinterpreter.debugger.model.TextMemoryBlock">
+            </instanceof>
+         </enablement>
+      </renderingBindings>
+   </extension>
 
 </plugin>
