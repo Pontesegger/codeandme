@@ -14,8 +14,10 @@ import com.codeandme.debugger.textinterpreter.debugger.events.debugger.DebuggerS
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.ResumedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.SuspendedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.TerminatedEvent;
+import com.codeandme.debugger.textinterpreter.debugger.events.debugger.VariablesEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.BreakpointRequest;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.DisconnectRequest;
+import com.codeandme.debugger.textinterpreter.debugger.events.model.FetchVariablesRequest;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.ResumeRequest;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.TerminateRequest;
 
@@ -89,6 +91,9 @@ public class TextDebugger implements IDebugger, IEventProcessor {
 				else if (((BreakpointRequest) event).getType() == BreakpointRequest.REMOVED)
 					fBreakpoints.remove(line);
 			}
+
+		} else if (event instanceof FetchVariablesRequest) {
+			fireEvent(new VariablesEvent(fInterpreter.getVariables()));
 		}
 	}
 

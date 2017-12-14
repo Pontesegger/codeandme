@@ -25,6 +25,7 @@ import com.codeandme.debugger.textinterpreter.debugger.events.debugger.DebuggerS
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.ResumedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.SuspendedEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.debugger.TerminatedEvent;
+import com.codeandme.debugger.textinterpreter.debugger.events.debugger.VariablesEvent;
 import com.codeandme.debugger.textinterpreter.debugger.events.model.BreakpointRequest;
 
 public class TextDebugTarget extends TextDebugElement implements IDebugTarget, IEventProcessor {
@@ -77,6 +78,7 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				System.out.println("Model     : process " + event);
 
 			if (event instanceof DebuggerStartedEvent) {
+
 				// create debug thread
 				TextThread thread = new TextThread(this);
 				fThreads.add(thread);
@@ -86,6 +88,7 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				TextStackFrame stackFrame = new TextStackFrame(this, thread);
 				thread.addStackFrame(stackFrame);
 				stackFrame.fireCreationEvent();
+				
 
 				// debugger got started and waits in suspended mode
 				setState(State.SUSPENDED);
@@ -99,7 +102,7 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 					breakpointAdded(breakpoint);
 
 				// inform eclipse of suspended state
-				fireSuspendEvent(DebugEvent.CLIENT_REQUEST);
+				thread.fireSuspendEvent(DebugEvent.BREAKPOINT);
 
 			} else if (event instanceof SuspendedEvent) {
 				// debugger got started and waits in suspended mode
@@ -109,8 +112,8 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 				getThreads()[0].getTopStackFrame().fireChangeEvent(DebugEvent.CONTENT);
 
 				// inform eclipse of suspended state
-				fireSuspendEvent(DebugEvent.CLIENT_REQUEST);
-
+				getThreads()[0].fireSuspendEvent(DebugEvent.BREAKPOINT);
+				
 			} else if (event instanceof ResumedEvent) {
 				if (((ResumedEvent) event).getType() == ResumedEvent.STEPPING) {
 					setState(State.STEPPING);
@@ -120,6 +123,10 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 					setState(State.RESUMED);
 					fireResumeEvent(DebugEvent.UNSPECIFIED);
 				}
+
+			} else if (event instanceof VariablesEvent) {
+				if (getThreads().length > 0)
+					getThreads()[0].getTopStackFrame().setVariables(((VariablesEvent) event).getVariables());
 
 			} else if (event instanceof TerminatedEvent) {
 				// debugger is terminated
@@ -190,7 +197,7 @@ public class TextDebugTarget extends TextDebugElement implements IDebugTarget, I
 	public IFile getFile() {
 		return fFile;
 	}
-	
+
 	// ************************************************************
 	// IBreakpointListener
 	// ************************************************************
