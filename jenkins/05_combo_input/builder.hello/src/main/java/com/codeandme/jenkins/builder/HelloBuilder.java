@@ -1,12 +1,22 @@
+/*******************************************************************************
+ * Copyright (c) 2018 Christian Pontesegger.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0
+ *
+ * Contributors:
+ *     Christian Pontesegger - initial API and implementation
+ *******************************************************************************/
 package com.codeandme.jenkins.builder;
 
 import java.io.IOException;
 
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
 
+import hudson.AbortException;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
@@ -22,51 +32,54 @@ import jenkins.tasks.SimpleBuildStep;
 
 public class HelloBuilder extends Builder implements SimpleBuildStep {
 
+	private boolean fFailBuild;
+
 	private String fBuildMessage;
 
-	private String fBuildType;
+	private String fBuildDelay;
 
 	@DataBoundConstructor
-	public HelloBuilder() {
+	public HelloBuilder(boolean failBuild, String buildMessage, String buildDelay) {
+		fFailBuild = failBuild;
+		fBuildMessage = buildMessage;
+		fBuildDelay = buildDelay;
 	}
 
 	@Override
 	public void perform(Run<?, ?> run, FilePath workspace, Launcher launcher, TaskListener listener)
 			throws InterruptedException, IOException {
+		listener.getLogger().println("This is the Hello plugin!");
 		listener.getLogger().println(getBuildMessage());
 
-		switch (getBuildType()) {
-		case "slow":
+		switch (getBuildDelay()) {
+		case "long":
 			Thread.sleep(10 * 1000);
 			break;
 
-		case "intermediate":
+		case "short":
 			Thread.sleep(3 * 1000);
 			break;
 
-		case "fast":
+		case "none":
 			// fall through
 		default:
 			// nothing to do
 		}
+
+		if (isFailBuild())
+			throw new AbortException("Build error forced by plugin settings");
 	}
 
-	@DataBoundSetter
-	public void setBuildType(String buildType) {
-		fBuildType = buildType;
-	}
-
-	public String getBuildType() {
-		return fBuildType;
-	}
-
-	@DataBoundSetter
-	public void setBuildMessage(String buildMessage) {
-		fBuildMessage = buildMessage;
+	public boolean isFailBuild() {
+		return fFailBuild;
 	}
 
 	public String getBuildMessage() {
 		return fBuildMessage;
+	}
+
+	public String getBuildDelay() {
+		return fBuildDelay;
 	}
 
 	@Symbol("greet")
@@ -96,12 +109,12 @@ public class HelloBuilder extends Builder implements SimpleBuildStep {
 			return "This is a great build";
 		}
 
-		public ListBoxModel doFillBuildTypeItems(@QueryParameter String buildType) {
+		public ListBoxModel doFillBuildDelayItems(@QueryParameter String buildDelay) {
 			ListBoxModel model = new ListBoxModel();
 
-			model.add(new Option("Slow", "slow", "slow".equals(buildType)));
-			model.add(new Option("Fast", "fast", "fast".equals(buildType)));
-			model.add(new Option("Intermediate", "intermediate" , "intermediate".equals(buildType)));
+			model.add(new Option("None", "none", "none".equals(buildDelay)));
+			model.add(new Option("Short", "short", "short".equals(buildDelay)));
+			model.add(new Option("Long", "long" , "long".equals(buildDelay)));
 
 			return model;
 		}
