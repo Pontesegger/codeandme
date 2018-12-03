@@ -1,0 +1,20 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler"
+	xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson"
+	xmlns:f="/lib/form">
+
+	<f:entry title="Custom build message" field="buildMessage">
+		<f:textbox default="${descriptor.getDefaultBuildMessage()}" />
+	</f:entry>
+
+	<f:advanced>
+		<f:entry title="Fail this build" field="failBuild">
+			<f:checkbox />
+		</f:entry>
+
+
+		<f:entry title="Build Delay" field="buildDelay">
+			<f:select />
+		</f:entry>
+	</f:advanced>
+</j:jelly>
