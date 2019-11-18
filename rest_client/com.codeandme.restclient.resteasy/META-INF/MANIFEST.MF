@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.codeandme.restclient.resteasy
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: com.codeandme.restclient.resteasy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.codeandme.restclient.resteasy
+Bundle-ClassPath: .
+Require-Bundle: org.jboss.resteasy;bundle-version="1.0.0"
+Bundle-Name: RESTEasy Client Demo
+Bundle-Vendor: codeandme.blogspot.com
